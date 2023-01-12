@@ -12,8 +12,6 @@ export class User {
     constructor(id) {
         this.id = id;
     }
-    ///getters
-
     async pull() {
         const res = await connection.query(`SELECT nombre,email,userId from user where userId = ${this.id};`)
         try {
@@ -21,10 +19,17 @@ export class User {
             const { email } = data[0];
             this.email = email;
         } catch (err) {
-            console.error("errore");
+            console.error("erorr: no se pudo traer la data");
         }
     }
-
+    async push() {
+        const res = await connection.query(`UPDATE user SET nombre = '${this.nombre}' where userId = ${this.id};`)
+        try {
+           return this;
+        } catch (err) {
+            console.error("error: no se pudo actualizar el registro");
+        }
+    }
     static async createUser(email: string) {
         const res = await connection.query(`INSERT into user (email) VALUES ('${email}');`)
         try {

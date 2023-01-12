@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest } from 'next'
 import parseBearerToken from "parse-bearer-token"
 import { decode } from './jwt'
 

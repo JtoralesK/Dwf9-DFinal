@@ -9,3 +9,15 @@ export async function meData(req) {
     await user.pull();
     return user;
 }
+export async function actualizaMeData(req,data) {
+    const token = comrpuebaToken(req);
+    if (token.error) {
+        return token;
+    }
+    const user = new User(token.userId);
+    await user.pull();
+    user.nombre = data.nombre;
+    await user.push()    
+    return user;
+
+}
