@@ -1,52 +1,51 @@
 {
-    "name": "m1",
-    "version": "1.0.0",
-    "main": "index.js",
-    "repository": "https://github.com/JtoralesK/dwf9-m1.git",
-    "author": "Javier Torales <82301704+JtoralesK@users.noreply.github.com>",
-    "license": "MIT",
-    "type": "module",
-    "scripts": {
-      "dev": "next dev ",
-      "build": "next build",
-      "start": "next",
-      "test": "ava"
+  "name": "m1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JtoralesK/dwf9-m1.git",
+  "author": "Javier Torales <82301704+JtoralesK@users.noreply.github.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev ",
+    "build": "next build",
+    "start": "next",
+    "test": "ava"
+  },
+  "ava": {
+    "nodeArguments": [
+      "--loader=@esbuild-kit/esm-loader",
+      "--experimental-specifier-resolution=node"
+    ],
+    "environmentVariables": {
+      "TESTING": "true"
     },
-      "ava": {
-        "nodeArguments": [
-          "--loader=@esbuild-kit/esm-loader",
-          "--experimental-specifier-resolution=node"
-        ],
-        "environmentVariables": {
-          "TESTING": "true"
-        },
-        "extensions": {
-          "ts": "module"
-        }
-      },
-    
-    "dependencies": {
-      "@sendgrid/mail": "^7.7.0",
-      "airtable": "^0.11.6",
-      "algolia": "^0.0.0",
-      "algoliasearch": "^4.14.3",
-      "ava": "^5.1.0",
-      "date-fns": "^2.29.3",
-      "esbuild-node-loader": "^0.8.0",
-      "jsonwebtoken": "^9.0.0",
-      "mercadopago": "^1.5.14",
-      "micro-method-router": "^0.1.0",
-      "mysql2": "^2.3.3",
-      "next": "^13.1.0",
-      "parse-bearer-token": "^1.0.1",
-      "random-seed": "^0.3.0",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0"
-    },
-    "devDependencies": {
-      "@types/node": "18.11.17",
-      "@types/react": "18.0.26",
-      "typescript": "4.9.4"
+    "extensions": {
+      "ts": "module"
     }
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "airtable": "^0.11.6",
+    "algolia": "^0.0.0",
+    "algoliasearch": "^4.14.3",
+    "ava": "^5.1.0",
+    "date-fns": "^2.29.3",
+    "esbuild-node-loader": "^0.8.0",
+    "jsonwebtoken": "^9.0.0",
+    "mercadopago": "^1.5.14",
+    "micro-method-router": "^0.1.0",
+    "mysql2": "^2.3.3",
+    "next": "^13.1.0",
+    "parse-bearer-token": "^1.0.1",
+    "random-seed": "^0.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.17",
+    "@types/react": "18.0.26",
+    "typescript": "4.9.4"
   }
-  
+}
