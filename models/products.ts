@@ -12,7 +12,7 @@ export class Product {
 
 
     async pull() {
-        const res = await connection.query(`SELECT name,price from product where userId = ${this.productId};`)
+        const res = await connection.query(`SELECT name,price from product where productId = ${this.productId};`)
         try {
             const data = res[0];
             const { name, price } = data[0];
