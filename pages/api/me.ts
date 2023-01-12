@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {comrpuebaToken} from"./lib/compruebaToken/index"
-export default function me(req:NextApiRequest,res:NextApiResponse){
-    const resp = comrpuebaToken(req,res);
-    res.send(resp);
+import { meData } from '../../controllers/userControllers';
+export default async function me(req: NextApiRequest, res: NextApiResponse) {
+    const me = await meData(req);
+    console.log(me);
+    
+    res.send(me);
 }

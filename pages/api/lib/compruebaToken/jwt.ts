@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken"
-export async function generate (obj){
-const token = jwt.sign(obj, process.env.JWT_KEY);
-try{
-    return token;
-}catch(err){
-    console.log("no se pudo generar token");
-    return null
+export function generate(obj):string|boolean{
+    try {
+        return jwt.sign(obj, process.env.JWT_KEY);
+    } catch (err) {
+        console.log("no se pudo generar token");
+        return false;
+    }
 }
+export function decode(token){
+    try {
+        return jwt.verify(token, process.env.JWT_KEY)
+    } catch (err) {
+        console.log("token incorrecto");
+        return false;
+    }
+
 }
-export function decode (token,res){    
-    const data= jwt.verify(token, process.env.JWT_KEY,function(err, decoded) {                        
-   return {decoded,err}
- })
- return data;
- }

@@ -1,9 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {sendCode} from"../../../controllers/controller"
+import {sendCode} from"../../../controllers/authControllers"
 import { sendEmail } from '../lib/sendgrid';
 import  methods from 'micro-method-router'
-import {pool as connection} from "../lib/db-sql/connection"
-import { User } from '../../../models/user';
 
 export default methods({
     async post(req:NextApiRequest,res:NextApiResponse){      

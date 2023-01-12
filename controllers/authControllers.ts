@@ -5,7 +5,6 @@ import addMinutes from "date-fns/addMinutes"
 var seed = 'Myhjkl';
 const rand4 = gen();
 
-
 export async function findOrCreateAuth(data: any) {
     const { email } = data;
     const cleanEmail = email.trim().toLowerCase();
