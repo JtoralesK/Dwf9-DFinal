@@ -2,6 +2,8 @@ import { Auth } from "../models/auth"
 import { User } from "../models/user";
 import gen from "random-seed"
 import addMinutes from "date-fns/addMinutes"
+import { pool as connection } from "../pages/api/lib/db-sql/connection"
+import { generate } from "../pages/api/lib/compruebaToken/jwt"
 var seed = 'Myhjkl';
 const rand4 = gen();
 
@@ -32,4 +34,18 @@ export async function sendCode(data) {
     //auth.show();
     auth.push()
     return { codigo: auth.codigo, email: auth.email };
+}
+
+
+export async function verificaCode(email: string, code: number) {
+    const auth = await Auth.buscaAuthWithCode(email, code);
+    if (!auth) return { error: "no existe ese codigo" };
+
+    if (auth.isCodeExpired()) {
+        const token = await generate({ userId: auth.userId })
+        return { token };
+
+    } else {
+        return { error: "codigo expiro" };
+    }
 }
