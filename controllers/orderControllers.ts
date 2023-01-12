@@ -40,3 +40,9 @@ export async function intencionDeCompra(req) {
     }
 
 }
+
+export async function getOrder(id:number){
+    const order= new Order(id);
+    await order.pull();
+    return order;
+}
