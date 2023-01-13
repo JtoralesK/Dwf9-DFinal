@@ -12,7 +12,7 @@ export class Auth {
         console.log({ userId: this.userId, codigo: this.codigo, fechaLimite: this.fechaLimite, email: this.email });
     }
     async pull() {
-        const res = await connection.query(`SELECT codigo,email,fechaLimite from auth where userId = ${this.userId};`)
+        const res = await connection.query(`SELECT codigo,email,fechaLimite from auths where userId = ${this.userId};`)
         try {
             const data = res[0];
             const { email, codigo, fechaLimite } = data[0];
@@ -24,7 +24,7 @@ export class Auth {
         }
     }
     async push() {
-        const res = await connection.query(`UPDATE auth 
+        const res = await connection.query(`UPDATE auths
     set
     codigo = ${this.codigo}, 
     fechaLimite = '${this.fechaLimite}'
@@ -37,7 +37,7 @@ export class Auth {
         }
     }
     static async findEmail(email: string) {
-        const res = await connection.query(`SELECT userId,codigo,fechaLimite,email from auth where email = '${email}';`)
+        const res = await connection.query(`SELECT userId,codigo,fechaLimite,email from auths where email = '${email}';`)
         try {
             const data: any = res[0]
             let count = 0;
@@ -59,7 +59,7 @@ export class Auth {
     }
     static async createAuth(data) {
         const { userId, email, codigo, fechaLimite } = data
-        const res = await connection.query(`INSERT into auth (userId,codigo,fechaLimite,email) VALUES ('${userId}','${codigo}','${fechaLimite}','${email}');`)
+        const res = await connection.query(`INSERT into auths (userId,codigo,fechaLimite,email) VALUES ('${userId}','${codigo}','${fechaLimite}','${email}');`)
         try {
             const newUser = new Auth(userId);
             await newUser.pull();
@@ -79,7 +79,7 @@ export class Auth {
 
     }
     static async buscaAuthWithCode(email: string, codigo: number) {
-        const res = await connection.query(`SELECT userId,fechaLimite from auth where email = '${email}' AND codigo = '${codigo}' ;`)
+        const res = await connection.query(`SELECT userId,fechaLimite from auths where email = '${email}' AND codigo = '${codigo}' ;`)
         try {
             const data: any = res[0]
             let count = 0;

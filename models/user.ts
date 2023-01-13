@@ -13,7 +13,7 @@ export class User {
         this.id = id;
     }
     async pull() {
-        const res = await connection.query(`SELECT nombre,email,userId from user where userId = ${this.id};`)
+        const res = await connection.query(`SELECT nombre,email,userId from users where userId = ${this.id};`)
         try {
             const data = res[0];
             const { email } = data[0];
@@ -23,7 +23,7 @@ export class User {
         }
     }
     async push() {
-        const res = await connection.query(`UPDATE user SET nombre = '${this.nombre}' where userId = ${this.id};`)
+        const res = await connection.query(`UPDATE users SET nombre = '${this.nombre}' where userId = ${this.id};`)
         try {
            return this;
         } catch (err) {
@@ -31,7 +31,7 @@ export class User {
         }
     }
     static async createUser(email: string) {
-        const res = await connection.query(`INSERT into user (email) VALUES ('${email}');`)
+        const res = await connection.query(`INSERT into users (email) VALUES ('${email}');`)
         try {
             const data: any = res[0];
             const newUser = new User(data.insertId);

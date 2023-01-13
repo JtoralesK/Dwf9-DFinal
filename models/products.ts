@@ -12,7 +12,7 @@ export class Product {
 
 
     async pull() {
-        const res = await connection.query(`SELECT name,price from product where productId = ${this.productId};`)
+        const res = await connection.query(`SELECT name,price from products where productId = ${this.productId};`)
         try {
             const data = res[0];
             const { name, price } = data[0];
@@ -26,7 +26,7 @@ export class Product {
     }
 
     static async createProduct(name: string, price: number) {
-        const res = await connection.query(`INSERT into product(name,price) VALUES ("${name}",${price});`)
+        const res = await connection.query(`INSERT into products(name,price) VALUES ("${name}",${price});`)
         try {
             const data: any = res[0];
             const newUser = new Product(data.insertId);
@@ -39,7 +39,7 @@ export class Product {
     }
 
     static async findProduct(productId: number) {
-        const res = await connection.query(`SELECT productId,name,price from product where productId = '${productId}';`)
+        const res = await connection.query(`SELECT productId,name,price from products where productId = '${productId}';`)
         try {
             const data: any = res[0]
             let count = 0;

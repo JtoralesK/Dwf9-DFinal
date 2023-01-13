@@ -1,29 +1,29 @@
-CREATE table user(
+CREATE table users(
     userId int auto_increment primary key,
     nombre varchar(50),
     email varchar(100)
 );
-CREATE table auth(
+CREATE table auths(
 	authId int auto_increment primary key,
     userId int,
     codigo int,
     email varchar(100),
     fechaLimite varchar(300),
     CONSTRAINT FK_userId FOREIGN KEY (userId)
-    REFERENCES user(userId)
+    REFERENCES users(userId)
 );
-CREATE table product(
+CREATE table products(
 	productId int auto_increment primary key,
     name varchar(100),
     price int
 );
-CREATE TABLE orders (
-    orderID int auto_increment PRIMARY KEY,
-    productID int,
+CREATE table orders (
+    orderId int auto_increment PRIMARY KEY,
+    productId int,
     userId int,
     status varchar(50),
     CONSTRAINT FK_UserIdOrder FOREIGN KEY (userId)
-    REFERENCES user(userId),
-    CONSTRAINT FK_ProductIdOrder FOREIGN KEY (productID)
-    REFERENCES product(productID)
+    REFERENCES users(userId),
+    CONSTRAINT FK_ProductIdOrder FOREIGN KEY (productId)
+    REFERENCES products(productId)
 );

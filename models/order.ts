@@ -8,7 +8,7 @@ type Me = {
 export class Order {
     orderId: number;
     userId: number;
-    productID: number;
+    productId: number;
     status: string;
     constructor(orderId: number) {
         this.orderId = orderId;
@@ -17,11 +17,11 @@ export class Order {
 
 
     async pull() {
-        const res = await connection.query(`SELECT productID,userId,status from orders where orderId = ${this.orderId};`)
+        const res = await connection.query(`SELECT productId,userId,status from orders where orderId = ${this.orderId};`)
         try {
             const data = res[0];
             const { productID, userId, status } = data[0];
-            this.productID = productID;
+            this.productId = productID;
             this.userId = userId;
             this.status = status;
             return true;
@@ -34,7 +34,7 @@ export class Order {
         const res = await connection.query(`UPDATE orders 
     set
     userId = ${this.userId}, 
-    productID = '${this.productID}',
+    productId = '${this.productId}',
     status = '${this.status}'
     where orderId = ${this.orderId};`)
         try {
@@ -44,12 +44,12 @@ export class Order {
             return null
         }
     }
-    static async createOrder(userId: number, productID: number) {
-        const res = await connection.query(`INSERT into orders (productID,userId) VALUES ('${productID}','${userId}');`)
+    static async createOrder(userId: number, productId: number) {
+        const res = await connection.query(`INSERT into orders (productId,userId) VALUES ('${productId}','${userId}');`)
         try {
             const data: any = res[0];
             const newOrder = new Order(data.insertId);
-            newOrder.productID = productID;
+            newOrder.productId = productId;
             newOrder.userId = userId;
             return newOrder;
         } catch (err) {
@@ -59,7 +59,7 @@ export class Order {
     }
 
     static async getAllOrdersOneUser(userId: number) {
-        const res = await connection.query(`SELECT orderID , productID , userId , status from orders where userId = ${userId};`)
+        const res = await connection.query(`SELECT orderId , productId , userId , status from orders where userId = ${userId};`)
         return res[0];
         
     }
