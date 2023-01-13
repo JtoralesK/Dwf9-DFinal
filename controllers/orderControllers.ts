@@ -47,3 +47,8 @@ export async function getOrder(id:number){
     if(!res)return {error:"no se pudo hacer el pull de la order"};
     return order;
 }
+export async function getAllOrdersOneUser(req){
+    const result = comrpuebaToken(req);
+    const order= await Order.getAllOrdersOneUser(result.userId);
+    return order;
+}

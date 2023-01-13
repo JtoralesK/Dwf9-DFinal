@@ -58,9 +58,10 @@ export class Order {
         }
     }
 
-    static async getAllMyOrders(userId: number) {
+    static async getAllOrdersOneUser(userId: number) {
         const res = await connection.query(`SELECT orderID , productID , userId , status from orders where userId = ${userId};`)
-
+        return res[0];
+        
     }
 
 };
