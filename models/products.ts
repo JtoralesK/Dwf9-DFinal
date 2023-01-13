@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { pool as connection } from "../pages/api/lib/db-sql/connection"
-
+import {index} from "../pages/api/lib/algolia"
+import {calcula} from"../pages/api/lib/requests"
 export class Product {
     productId: number;
     name: string;
@@ -12,6 +13,12 @@ export class Product {
 
 
     async pull() {
+        //const {limit,offset}= calcula(req.query.limit,req.query.offset,100);
+        /*index.getObject('myId').then(object => {
+            console.log(object);
+          });
+          console.log(results);
+          */
         const res = await connection.query(`SELECT name,price from products where productId = ${this.productId};`)
         try {
             const data = res[0];
