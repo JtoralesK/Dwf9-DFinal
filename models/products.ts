@@ -18,8 +18,10 @@ export class Product {
             const { name, price } = data[0];
             this.name = name;
             this.price = price;
+            return true;
         } catch (err) {
             console.error("no se pudo traer la data de product");
+            return false;
         }
     }
 

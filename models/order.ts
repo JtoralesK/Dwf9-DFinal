@@ -24,8 +24,10 @@ export class Order {
             this.productID = productID;
             this.userId = userId;
             this.status = status;
+            return true;
         } catch (err) {
             console.error("no se pudo hacer el pull de la order");
+            return false;
         }
     }
     async push() {
@@ -56,6 +58,9 @@ export class Order {
         }
     }
 
+    static async getAllMyOrders(userId: number) {
+        const res = await connection.query(`SELECT orderID , productID , userId , status from orders where userId = ${userId};`)
 
+    }
 
 };

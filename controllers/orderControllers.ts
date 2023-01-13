@@ -43,6 +43,7 @@ export async function intencionDeCompra(req) {
 
 export async function getOrder(id:number){
     const order= new Order(id);
-    await order.pull();
+    const res =await order.pull();
+    if(!res)return {error:"no se pudo hacer el pull de la order"};
     return order;
 }
