@@ -7,6 +7,8 @@ export async function meData(req) {
     }
     const user = new User(data.userId);
     await user.pull();
+    console.log(user);
+    
     return user;
 }
 export async function actualizaMeData(req,data) {

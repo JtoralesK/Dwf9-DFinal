@@ -18,7 +18,7 @@ export class User {
             const data = res[0];
             const { email, nombre } = data[0];
             this.email = email;
-            this.nombre = this.nombre
+            this.nombre = nombre
         } catch (err) {
             console.error("erorr: no se pudo traer la data");
         }
