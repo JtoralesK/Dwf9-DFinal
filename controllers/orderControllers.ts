@@ -29,9 +29,8 @@ const preference = (product, order) => {
 
 export async function intencionDeCompra(req) {
     const result = comrpuebaToken(req);
-    const user = new User(result.userId);
-    console.log(user);
-    
+    if (result.error)  return result;
+    const user = new User(result.userId);    
     const producId = req.query.productId as string;
     const product = await Product.findProduct(producId);
     if (product != null) {

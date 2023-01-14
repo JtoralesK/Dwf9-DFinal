@@ -13,9 +13,8 @@ export async function meData(req) {
 }
 export async function actualizaMeData(req,data) {
     const res = comrpuebaToken(req);
-    if (res.error) {
-        return res;
-    }
+    if (res.error)  return res;
+    
     const user = new User(res.userId);
     await user.pull();
     user.nombre = data.nombre;
