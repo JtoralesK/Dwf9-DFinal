@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import methods from 'micro-method-router'
-import { getMerchantOrder } from './lib/mercadoPagoFunctions'
-import { Order } from '../../models/order';
+import { getMerchantOrder } from '../lib/mercadoPagoFunctions'
+import { Order } from '../../../models/order';
 export default methods({
     async post(req: NextApiRequest, res: NextApiResponse) {
         const { id, topic } = req.query;
