@@ -36,7 +36,7 @@ export async function intencionDeCompra(req) {
     if (product != null) {
         const order = await Order.createOrder(user.id, product.productId);
         const prefences = await createPreference(preference(product, order));
-        return  prefences.init_point;
+        return  {link:prefences.init_point,orderId:order.orderId};
     } else {
         return { error: "no hay producto con ese id" };
     }
@@ -51,6 +51,7 @@ export async function getOrder(id:number){
 }
 export async function getAllOrdersOneUser(req){
     const result = comrpuebaToken(req);
+    if(result.error)return result;
     const order= await Order.getAllOrdersOneUser(result.userId);
     return order;
 }
