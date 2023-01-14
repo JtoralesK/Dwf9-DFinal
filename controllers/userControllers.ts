@@ -12,11 +12,11 @@ export async function meData(req) {
     return user;
 }
 export async function actualizaMeData(req,data) {
-    const token = comrpuebaToken(req);
-    if (token.error) {
-        return token;
+    const res = comrpuebaToken(req);
+    if (res.error) {
+        return res;
     }
-    const user = new User(token.userId);
+    const user = new User(res.userId);
     await user.pull();
     user.nombre = data.nombre;
     await user.push()    

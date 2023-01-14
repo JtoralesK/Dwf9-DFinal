@@ -22,7 +22,7 @@ const preference = (product, order) => {
             "sucess": "https://mypageEcommerce"
         },
         "external_reference": `${order.orderId}`,
-        "notification_url": "https://dw9-m5.vercel.app/api/webHooks/mercadopago"
+        "notification_url": "https://dw9-m5.vercel.app/api/ipn/mercadopago"
     }
 }
 
