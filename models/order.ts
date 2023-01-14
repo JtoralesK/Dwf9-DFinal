@@ -8,7 +8,7 @@ type Me = {
 export class Order {
     orderId: number;
     userId: number;
-    productId: number;
+    productId: string;
     status: string;
     constructor(orderId: number) {
         this.orderId = orderId;
@@ -44,7 +44,7 @@ export class Order {
             return null
         }
     }
-    static async createOrder(userId: number, productId: number) {
+    static async createOrder(userId: number, productId: string) {
         const res = await connection.query(`INSERT into orders (productId,userId) VALUES ('${productId}','${userId}');`)
         try {
             const data: any = res[0];

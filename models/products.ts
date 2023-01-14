@@ -1,25 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { pool as connection } from "../pages/api/lib/db-sql/connection"
-import {index} from "../pages/api/lib/algolia"
-import {calcula} from"../pages/api/lib/requests"
+import { index } from "../pages/api/lib/algolia"
+import { calcula } from "../pages/api/lib/requests"
 export class Product {
-    productId: number;
-    name: string;
-    price: number;
+    productId: string;
+    data: {}
     constructor(productId) {
         this.productId = productId;
     }
     ///getters
-
-
     async pull() {
-        //const {limit,offset}= calcula(req.query.limit,req.query.offset,100);
-        /*index.getObject('myId').then(object => {
-            console.log(object);
-          });
-          console.log(results);
-          */
-        const res = await connection.query(`SELECT name,price from products where productId = ${this.productId};`)
+        try {
+            const object = await index.getObject(this.productId);
+            this.data = object;
+            return true;
+        } catch (err) {
+            console.error("no se pudo traer la data de product");
+            return false;
+        }
+
+        /*const res = await connection.query(`SELECT name,price from products where productId = ${this.productId};`)
         try {
             const data = res[0];
             const { name, price } = data[0];
@@ -29,7 +29,7 @@ export class Product {
         } catch (err) {
             console.error("no se pudo traer la data de product");
             return false;
-        }
+        }*/
     }
 
     static async createProduct(name: string, price: number) {
@@ -45,23 +45,14 @@ export class Product {
         }
     }
 
-    static async findProduct(productId: number) {
-        const res = await connection.query(`SELECT productId,name,price from products where productId = '${productId}';`)
+    static async findProduct(productId: string) {
         try {
-            const data: any = res[0]
-            let count = 0;
-            data.map((e) => count++)
-            if (count > 0) {
-                const { productId, name, price } = data[0];
-                const product = new Product(productId)
-                product.name = name;
-                product.price = price;
-                return product;
-            } else {
-                return null;
-            }
+            const object = await index.getObject(productId);
+            const product = new Product(productId)
+            product.data = object;
+            return product;
         } catch (err) {
-            console.error(err, "error a");
+            console.error("no se pudo traer la data de product");
             return null;
         }
 

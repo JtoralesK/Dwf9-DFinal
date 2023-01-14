@@ -4,8 +4,8 @@ import { getProduct } from '../../../controllers/productControllers';
 
 export default methods({
   async get(req: NextApiRequest, res: NextApiResponse) {
-    const id = JSON.parse(req.query.id as string);
-    const product = await getProduct(id);    
+    const id = req.query.id as string;
+    const product = await getProduct(id);        
     res.send(product);
 }
 })

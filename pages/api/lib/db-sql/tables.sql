@@ -19,11 +19,9 @@ CREATE table products(
 );
 CREATE table orders (
     orderId int auto_increment PRIMARY KEY,
-    productId int,
+    productId varchar(100),
     userId int,
     status varchar(50),
     CONSTRAINT FK_UserIdOrder FOREIGN KEY (userId)
-    REFERENCES users(userId),
-    CONSTRAINT FK_ProductIdOrder FOREIGN KEY (productId)
-    REFERENCES products(productId)
+    REFERENCES users(userId)
 );

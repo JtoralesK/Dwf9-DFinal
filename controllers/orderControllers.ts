@@ -5,16 +5,17 @@ import { Order } from '../models/order'
 import { createPreference } from '../pages/api/lib/mercadoPagoFunctions'
 
 const preference = (product, order) => {
+    const data = product.data;
     return {
         "items": [
             {
-                "title": `${product.name}`,
-                "description": "iphone x",
+                "title": `${data.name}`,
+                "description": `${data.description}`,
                 "picture_url": "http://www.myapp.com/myimage.jpg",
-                "category_id": "car_electronics",
+                "category_id": `${data.type}`,
                 "quantity": 1,
                 "currency_id": "ARS",
-                "unit_price": product.price
+                "unit_price": data.price
             }
         ],
         "back_urls": {
@@ -29,7 +30,9 @@ const preference = (product, order) => {
 export async function intencionDeCompra(req) {
     const result = comrpuebaToken(req);
     const user = new User(result.userId);
-    const producId = JSON.parse(req.query.productId as string);
+    console.log(user);
+    
+    const producId = req.query.productId as string;
     const product = await Product.findProduct(producId);
     if (product != null) {
         const order = await Order.createOrder(user.id, product.productId);
