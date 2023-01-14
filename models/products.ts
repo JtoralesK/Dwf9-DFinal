@@ -18,18 +18,6 @@ export class Product {
             console.error("no se pudo traer la data de product");
             return false;
         }
-
-        /*const res = await connection.query(`SELECT name,price from products where productId = ${this.productId};`)
-        try {
-            const data = res[0];
-            const { name, price } = data[0];
-            this.name = name;
-            this.price = price;
-            return true;
-        } catch (err) {
-            console.error("no se pudo traer la data de product");
-            return false;
-        }*/
     }
 
     static async createProduct(name: string, price: number) {
@@ -54,6 +42,18 @@ export class Product {
         } catch (err) {
             console.error("no se pudo traer la data de product");
             return null;
+        }
+    }
+    static async searchQ(q: string, offset: number, limit: number) {
+        try {
+            const results = await index.search(q, {
+                hitsPerPage: limit,
+                page: offset > 1 ? Math.floor(offset / limit) : 0
+            })
+            return results.hits;
+        } catch (err) {
+            console.log("hubo un error:", err);
+            return false;
         }
 
     }
