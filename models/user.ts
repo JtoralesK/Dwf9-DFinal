@@ -16,8 +16,9 @@ export class User {
         const res = await connection.query(`SELECT nombre,email,userId from users where userId = ${this.id};`)
         try {
             const data = res[0];
-            const { email } = data[0];
+            const { email, nombre } = data[0];
             this.email = email;
+            this.nombre = this.nombre
         } catch (err) {
             console.error("erorr: no se pudo traer la data");
         }
@@ -25,7 +26,7 @@ export class User {
     async push() {
         const res = await connection.query(`UPDATE users SET nombre = '${this.nombre}' where userId = ${this.id};`)
         try {
-           return this;
+            return this;
         } catch (err) {
             console.error("error: no se pudo actualizar el registro");
         }
