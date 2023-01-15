@@ -2,7 +2,6 @@ import { Auth } from "../models/auth"
 import { User } from "../models/user";
 import gen from "random-seed"
 import addMinutes from "date-fns/addMinutes"
-import { pool as connection } from "../pages/api/lib/db-sql/connection"
 import { generate } from "../pages/api/lib/compruebaToken/jwt"
 var seed = 'Myhjkl';
 const rand4 = gen();

@@ -8,17 +8,17 @@ export async function meData(req) {
     const user = new User(data.userId);
     await user.pull();
     console.log(user);
-    
+
     return user;
 }
-export async function actualizaMeData(req,data) {
+export async function actualizaMeData(req, data) {
     const res = comrpuebaToken(req);
-    if (res.error)  return res;
-    
+    if (res.error) return res;
+
     const user = new User(res.userId);
     await user.pull();
     user.nombre = data.nombre;
-    await user.push()    
+    await user.push()
     return user;
 
 }

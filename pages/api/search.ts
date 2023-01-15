@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import methods from 'micro-method-router'
 import * as yup from 'yup';
 import { getProductByQuery } from '../../controllers/productControllers';
+
 let queryObj = yup.object().shape({
     q: yup.string().required(),
     offset: yup.number().required(),
@@ -20,8 +21,6 @@ export default methods({
         } catch (err) {
             res.status(400).send({ erorr: "falta algun parametro" })
         }
-
     }
-
 })
 

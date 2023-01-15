@@ -28,30 +28,30 @@ const preference = (product, order) => {
 
 
 export async function intencionDeCompra(req) {
-    const result = comrpuebaToken(req);    
-    if (result.error)  return result;    
-    const user = new User(result.userId);    
+    const result = comrpuebaToken(req);
+    if (result.error) return result;
+    const user = new User(result.userId);
     const producId = req.query.productId as string;
     const product = await Product.findProduct(producId);
     if (product != null) {
         const order = await Order.createOrder(user.id, product.productId);
         const prefences = await createPreference(preference(product, order));
-        return  {link:prefences.init_point,orderId:order.orderId};
+        return { link: prefences.init_point, orderId: order.orderId };
     } else {
         return { error: "no hay producto con ese id" };
     }
 
 }
 
-export async function getOrder(id:number){
-    const order= new Order(id);
-    const res =await order.pull();
-    if(!res)return {error:"no se pudo hacer el pull de la order"};
+export async function getOrder(id: number) {
+    const order = new Order(id);
+    const res = await order.pull();
+    if (!res) return { error: "no se pudo hacer el pull de la order" };
     return order;
 }
-export async function getAllOrdersOneUser(req){
+export async function getAllOrdersOneUser(req) {
     const result = comrpuebaToken(req);
-    if(result.error)return result;
-    const order= await Order.getAllOrdersOneUser(result.userId);
+    if (result.error) return result;
+    const order = await Order.getAllOrdersOneUser(result.userId);
     return order;
 }

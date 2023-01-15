@@ -13,9 +13,7 @@ export class Order {
     constructor(orderId: number) {
         this.orderId = orderId;
     }
-    ///getters
-
-
+ 
     async pull() {
         const res = await connection.query(`SELECT productId,userId,status from orders where orderId = ${this.orderId};`)
         try {

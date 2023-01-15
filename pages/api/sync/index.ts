@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import methods from 'micro-method-router'
-import {calcula} from '../lib/requests';
+import { calcula } from '../../../externalFunctions/calculaLimitYOffset';
 import { base } from "../lib/airtable"
 import { index } from "../lib/algolia"
 
 
-const newObjectIndex = (e) => {    
-    const newObj = { ...e.fields, objectID: e.id }        
+const newObjectIndex = (e) => {
+    const newObj = { ...e.fields, objectID: e.id }
     return newObj;
 }
 
@@ -21,10 +21,7 @@ export default methods({
             try {
                 records.forEach(function (record) {
                     const obj = newObjectIndex(record);
-                    vIndex.push(obj)
-
-
-
+                    vIndex.push(obj);
                 });
             } catch (e) { console.log('error inside eachPage => ', e) }
             index.saveObjects(vIndex).wait()
