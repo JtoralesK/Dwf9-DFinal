@@ -14,8 +14,11 @@ export default methods({
             await emailYCode.validate(req.body);
             const { email, code } = req.body;
             const result = await verificaCode(email, code)
-            if (result.error) res.status((401)).send(result);
-            res.send({ result })
+            if (result.error){
+                res.status((401)).send(result);
+            }else{
+                res.send({ result })
+            }
         } catch (err) {
             res.status(400).send({ error: err })
         }
