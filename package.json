@@ -18,13 +18,15 @@
       "--experimental-specifier-resolution=node"
     ],
     "environmentVariables": {
-      "TESTING": "true"
+      "TESTING": "true",
+      "JWT_KEY":"80935jas9fa_"
     },
     "extensions": {
       "ts": "module"
     }
   },
   "dependencies": {
+    "@esbuild-kit/esm-loader": "^2.5.4",
     "@sendgrid/mail": "^7.7.0",
     "airtable": "^0.11.6",
     "algolia": "^0.0.0",
