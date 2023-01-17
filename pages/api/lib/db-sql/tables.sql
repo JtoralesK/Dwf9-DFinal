@@ -13,7 +13,6 @@ CREATE table auths(
     CONSTRAINT FK_userId FOREIGN KEY (userId)
     REFERENCES users(userId)
 );
-
 CREATE table orders (
     orderId int auto_increment PRIMARY KEY,
     productId varchar(100),
