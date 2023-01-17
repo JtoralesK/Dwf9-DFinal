@@ -1,30 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import methods from 'micro-method-router'
 import { pool as connection } from "../pages/api/lib/db-sql/connection"
-type Me = {
-    email: string;
-    nombre: string;
-}
 export class User {
     id: number;
     email: string;
     nombre: string;
+    address: string
     constructor(id) {
         this.id = id;
     }
     async pull() {
-        const res = await connection.query(`SELECT nombre,email,userId from users where userId = ${this.id};`)
+        const res = await connection.query(`SELECT nombre,email,address,userId from users where userId = ${this.id};`)
         try {
             const data = res[0];
-            const { email, nombre } = data[0];
+            const { email, nombre, address } = data[0];
             this.email = email;
-            this.nombre = nombre
+            this.nombre = nombre;
+            this.address = address;
         } catch (err) {
             console.error("erorr: no se pudo traer la data");
         }
     }
     async push() {
-        const res = await connection.query(`UPDATE users SET nombre = '${this.nombre}' where userId = ${this.id};`)
+        await connection.query(`UPDATE users SET nombre = '${this.nombre}', address = '${this.address}' where userId = ${this.id};`)
         try {
             return this;
         } catch (err) {

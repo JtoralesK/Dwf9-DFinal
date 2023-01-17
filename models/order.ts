@@ -1,10 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import methods from 'micro-method-router'
 import { pool as connection } from "../pages/api/lib/db-sql/connection"
-type Me = {
-    email: string;
-    nombre: string;
-}
 export class Order {
     orderId: number;
     userId: number;

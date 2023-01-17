@@ -4,7 +4,9 @@ import methods from 'micro-method-router'
 import * as yup from 'yup';
 
 let schema = yup.object().shape({
-    nombre: yup.string().required(),
+    nombre: yup.string(),
+    address: yup.string(),
+
 }).noUnknown(true).strict();
 
 export default methods({

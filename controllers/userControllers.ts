@@ -14,10 +14,10 @@ export async function meData(req) {
 export async function actualizaMeData(req, data) {
     const res = comrpuebaToken(req);
     if (res.error) return res;
-
     const user = new User(res.userId);
     await user.pull();
-    user.nombre = data.nombre;
+    if(data.nombre) user.nombre = data.nombre;
+    if(data.address) user.address = data.address;
     await user.push()
     return user;
 

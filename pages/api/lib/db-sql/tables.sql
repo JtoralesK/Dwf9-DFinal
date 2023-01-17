@@ -1,6 +1,7 @@
 CREATE table users(
     userId int auto_increment primary key,
     nombre varchar(50),
+    address varchar(50),
     email varchar(100)
 );
 CREATE table auths(
@@ -12,11 +13,7 @@ CREATE table auths(
     CONSTRAINT FK_userId FOREIGN KEY (userId)
     REFERENCES users(userId)
 );
-CREATE table products(
-	productId int auto_increment primary key,
-    name varchar(100),
-    price int
-);
+
 CREATE table orders (
     orderId int auto_increment PRIMARY KEY,
     productId varchar(100),

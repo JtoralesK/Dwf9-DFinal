@@ -17,7 +17,7 @@ export default methods({
             if (result.error){
                 res.status((401)).send(result);
             }else{
-                res.send({ result })
+                res.send( result )
             }
         } catch (err) {
             res.status(400).send({ error: err })
