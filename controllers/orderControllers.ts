@@ -23,7 +23,7 @@ const preference = (product, order) => {
             "sucess": "https://mypageEcommerce"
         },
         "external_reference": `${order.orderId}`,
-        "notification_url": "https://webhook.site/1834b5eb-f1b4-484e-af29-cfbef37c8f51"
+        "notification_url": "https://dwf9-d-final.vercel.app/api/ipn/mercadopago"
     }
 }
 
