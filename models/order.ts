@@ -7,13 +7,13 @@ export class Order {
     constructor(orderId: number) {
         this.orderId = orderId;
     }
- 
+
     async pull() {
         const res = await connection.query(`SELECT productId,userId,status from orders where orderId = ${this.orderId};`)
         try {
             const data = res[0];
-            const { productID, userId, status } = data[0];
-            this.productId = productID;
+            const { productId, userId, status } = data[0];
+            this.productId = productId;
             this.userId = userId;
             this.status = status;
             return true;
@@ -53,7 +53,7 @@ export class Order {
     static async getAllOrdersOneUser(userId: number) {
         const res = await connection.query(`SELECT orderId , productId , userId , status from orders where userId = ${userId};`)
         return res[0];
-        
+
     }
 
 };
