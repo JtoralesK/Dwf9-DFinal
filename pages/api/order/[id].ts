@@ -1,13 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
 import { getOrder } from "controllers/orderControllers";
+import { handlerCORS } from "externalFunctions/handlerCors";
 
-export default methods({
-  async get(req: NextApiRequest, res: NextApiResponse) {
-    const id = JSON.parse(req.query.id as string);
-    const order = await getOrder(id);
-    console.log(order);
+async function getMyOrder(req: NextApiRequest, res: NextApiResponse) {
+  const id = JSON.parse(req.query.id as string);
+  const order = await getOrder(id);
+  console.log(order);
 
-    res.send({ order });
-  },
+  res.send({ order });
+}
+const handler = methods({
+  get: getMyOrder,
 });
+
+export default handlerCORS(handler);

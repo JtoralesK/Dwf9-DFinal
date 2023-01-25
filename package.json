@@ -19,7 +19,7 @@
     ],
     "environmentVariables": {
       "TESTING": "true",
-      "JWT_KEY":"80935jas9fa_"
+      "JWT_KEY": "80935jas9fa_"
     },
     "extensions": {
       "ts": "module"
@@ -39,6 +39,7 @@
     "micro-method-router": "^0.1.0",
     "mysql2": "^2.3.3",
     "next": "^13.1.0",
+    "nextjs-cors": "^2.1.2",
     "parse-bearer-token": "^1.0.1",
     "random-seed": "^0.3.0",
     "react": "^18.2.0",

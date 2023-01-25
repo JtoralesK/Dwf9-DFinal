@@ -33,13 +33,18 @@ export async function intencionDeCompra(req) {
   const user = new User(result.userId);
   const producId = req.query.productId as string;
   const product = await Product.findProduct(producId);
-  if (product != null) {
-    const order = await Order.createOrder(user.id, product.productId);
-    const prefences = await createPreference(preference(product, order));
-    return { link: prefences.init_point, orderId: order.orderId };
-  } else {
-    return { error: "no hay producto con ese id" };
+  if (product == null) return { error: "no hay producto con ese id" };
+
+  const order = await Order.createOrder(user.id, product.productId);
+
+  if (order == null) {
+    console.log("error");
+
+    return { error: "no se pudo concretar la orden con esos datos" };
   }
+
+  const prefences = await createPreference(preference(product, order));
+  return { link: prefences.init_point, orderId: order.orderId };
 }
 
 export async function getOrder(id: number) {

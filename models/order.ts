@@ -49,7 +49,6 @@ export class Order {
       newOrder.userId = userId;
       return newOrder;
     } catch (err) {
-      console.log(err, "error");
       return null;
     }
   }
