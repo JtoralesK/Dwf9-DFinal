@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { calcula } from "../../../externalFunctions/calculaLimitYOffset";
-import { base } from "../lib/airtable";
-import { index } from "../lib/algolia";
+import { calcula } from "externalFunctions/calculaLimitYOffset";
+import { base } from "lib/airtable";
+import { index } from "lib/algolia";
 
 const newObjectIndex = (e) => {
   const newObj = { ...e.fields, objectID: e.id };
