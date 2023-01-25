@@ -1,4 +1,4 @@
-import { Product } from "../models/products";
+import { Product } from "models/products";
 export async function getProduct(id: string) {
   const product = new Product(id);
   const res = await product.pull();

@@ -1,4 +1,4 @@
-import { calcula } from "../externalFunctions/calculaLimitYOffset";
+import { calcula } from "externalFunctions/calculaLimitYOffset";
 import test from "ava";
 test("calculaLimitYOffset", (t) => {
   const { limit, offset, tam } = calcula("15", "100", 50);

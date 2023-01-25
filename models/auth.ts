@@ -1,4 +1,4 @@
-import { pool as connection } from "../pages/api/lib/db-sql/connection";
+import { pool as connection } from "lib/db-sql/connection";
 import isAfter from "date-fns/isAfter";
 export class Auth {
   userId: number;

@@ -1,5 +1,5 @@
-import { User } from "../models/user";
-import { comrpuebaToken } from "../pages/api/lib/compruebaToken";
+import { User } from "models/user";
+import { comrpuebaToken } from "lib/compruebaToken";
 export async function meData(req) {
   const data = comrpuebaToken(req);
   if (data.error) {

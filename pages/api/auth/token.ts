@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { verificaCode } from "../../../controllers/authControllers";
+import { verificaCode } from "controllers/authControllers";
 import * as yup from "yup";
 
 const emailYCode = yup

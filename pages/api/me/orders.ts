@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
 import * as yup from "yup";
-import { getAllOrdersOneUser } from "../../../controllers/orderControllers";
+import { getAllOrdersOneUser } from "controllers/orderControllers";
 let schema = yup
   .object()
   .shape({

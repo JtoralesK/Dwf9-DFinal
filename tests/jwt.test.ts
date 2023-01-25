@@ -1,4 +1,4 @@
-import { decode, generate } from "../pages/api/lib/compruebaToken/jwt";
+import { decode, generate } from "lib/compruebaToken/jwt";
 import test from "ava";
 
 test("jwt generate/decode", (t) => {

@@ -1,5 +1,5 @@
-import { calcula } from "../externalFunctions/calculaLimitYOffset";
-import { index } from "../pages/api/lib/algolia";
+import { calcula } from "externalFunctions/calculaLimitYOffset";
+import { index } from "lib/algolia";
 export class Product {
   productId: string;
   data: {};

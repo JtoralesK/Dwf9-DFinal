@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { getProduct } from "../../../controllers/productControllers";
+import { getProduct } from "controllers/productControllers";
 import * as yup from "yup";
 
 let schema = yup

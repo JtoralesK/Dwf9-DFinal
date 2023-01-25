@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { getOrder } from "../../../controllers/orderControllers";
+import { getOrder } from "controllers/orderControllers";
 
 export default methods({
   async get(req: NextApiRequest, res: NextApiResponse) {

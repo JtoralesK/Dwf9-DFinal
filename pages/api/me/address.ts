@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { meData, actualizaMeData } from "../../../controllers/userControllers";
+import { meData, actualizaMeData } from "controllers/userControllers";
 import methods from "micro-method-router";
 import * as yup from "yup";
 

@@ -1,9 +1,9 @@
-import { comrpuebaToken } from "../pages/api/lib/compruebaToken";
-import { User } from "../models/user";
-import { Product } from "../models/products";
-import { Order } from "../models/order";
-import { createPreference } from "../pages/api/lib/mercadoPagoFunctions";
-import { getMerchantOrder } from "../pages/api/lib/mercadoPagoFunctions";
+import { comrpuebaToken } from "lib/compruebaToken";
+import { User } from "models/user";
+import { Product } from "models/products";
+import { Order } from "models/order";
+import { createPreference } from "lib/mercadoPagoFunctions";
+import { getMerchantOrder } from "lib/mercadoPagoFunctions";
 
 const preference = (product, order) => {
   const data = product.data;
