@@ -24,6 +24,8 @@ export async function findOrCreateAuth(data: any) {
   }
 }
 export async function sendCode(data) {
+  console.log(data);
+
   const auth = await findOrCreateAuth(data);
   const codigo = rand4.intBetween(10000, 99999);
   const date = new Date();

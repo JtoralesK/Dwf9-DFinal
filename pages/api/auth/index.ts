@@ -14,11 +14,15 @@ let email = yup
 
 async function auth(req: NextApiRequest, res: NextApiResponse) {
   try {
+    console.log("paso");
+
     await email.validate(req.body);
     const resp = await sendCode(req.body);
     await sendEmail(resp.email, resp.codigo);
     res.send({ codigo: resp.codigo });
   } catch (err) {
+    console.log("no paso");
+
     res.status(400).send({ error: err });
   }
 }

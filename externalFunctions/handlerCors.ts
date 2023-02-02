@@ -1,17 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import NextCors from "nextjs-cors";
 
-export function handlerCORS(callback: any) {
-  async function handler(req: NextApiRequest, res: NextApiResponse) {
-    await NextCors(req, res, {
-      // Options
-      methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-      origin: "*",
-      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    });
+import Cors from "cors";
+const cors = Cors({
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+});
 
-    // Rest of the API logic
-    callback(req, res);
-  }
-  return handler;
+export function handlerCORS(cb) {
+  return async (req: NextApiRequest, res: NextApiResponse) => {
+    cors(req, res, (result) => {
+      if (result instanceof Error) return false;
+      cb(req, res);
+    });
+  };
 }

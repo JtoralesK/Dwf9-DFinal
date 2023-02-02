@@ -27,7 +27,7 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 const handler = methods({
-  post: search,
+  get: search,
 });
 
 export default handlerCORS(handler);

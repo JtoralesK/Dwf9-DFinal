@@ -1,5 +1,13 @@
 import { calcula } from "externalFunctions/calculaLimitYOffset";
 import { index } from "lib/algolia";
+import { base } from "lib/airtable";
+
+const newObjectIndex = (e) => {
+  const newObj = { ...e.fields };
+  newObj.objectID = e.id;
+  return newObj;
+};
+
 export class Product {
   productId: string;
   data: {};
@@ -49,5 +57,33 @@ export class Product {
       console.log("hubo un error:", err);
       return false;
     }
+  }
+  static async getProductsOfAirtable(limit, offset) {
+    let vIndex = [];
+    await base("Furniture")
+      .select({
+        pageSize: limit,
+      })
+      .eachPage(function page(records, fetchNextPage) {
+        try {
+          records.forEach(function (record) {
+            const obj = newObjectIndex(record);
+            vIndex.push(obj);
+          });
+        } catch (e) {
+          console.log("error inside eachPage => ", e);
+        }
+        console.log("se paso a otra pagina");
+        fetchNextPage();
+      });
+    await Product.syncProductsAlgolia(vIndex);
+    console.log({ vIndex });
+
+    return { limit, offset: limit + offset };
+    /* 
+    });*/
+  }
+  static async syncProductsAlgolia(vIndex) {
+    index.saveObjects(vIndex).wait();
   }
 }
