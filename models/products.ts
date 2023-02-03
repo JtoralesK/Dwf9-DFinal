@@ -1,6 +1,7 @@
 import { calcula } from "externalFunctions/calculaLimitYOffset";
 import { index } from "lib/algolia";
 import { base } from "lib/airtable";
+import algoliasearch from "algoliasearch";
 
 const newObjectIndex = (e) => {
   const newObj = { ...e.fields };
@@ -76,14 +77,12 @@ export class Product {
         console.log("se paso a otra pagina");
         fetchNextPage();
       });
-    await Product.syncProductsAlgolia(vIndex);
-    console.log({ vIndex });
-
-    return { limit, offset: limit + offset };
-    /* 
-    });*/
+    const res = await Product.syncProductsAlgolia(vIndex);
+    if (res) return { limit, offset: limit + offset };
   }
-  static async syncProductsAlgolia(vIndex) {
+  static async syncProductsAlgolia(vIndex: any[]) {
+    console.log({ vIndex }, "para algolia");
     index.saveObjects(vIndex).wait();
+    return true;
   }
 }
