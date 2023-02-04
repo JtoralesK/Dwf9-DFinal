@@ -6,7 +6,7 @@ export async function getProduct(id: string) {
   const product = new Product(id);
   const res = await product.pull();
   if (!res) return { error: "no se pudo traer la data de product" };
-  return product;
+  return product.data;
 }
 export async function getProductByQuery(
   q: string,

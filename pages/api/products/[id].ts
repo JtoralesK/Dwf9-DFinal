@@ -5,7 +5,7 @@ import { handlerCORS } from "externalFunctions/handlerCors";
 async function getMyProduct(req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string;
   const product = await getProduct(id);
-  res.status(200).send({ res: product });
+  res.status(200).send(product);
 }
 const handler = methods({
   get: getMyProduct,
