@@ -14,10 +14,9 @@ let email = yup
 
 async function auth(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log("paso");
-
     await email.validate(req.body);
     const resp = await sendCode(req.body);
+    console.log(resp);
     await sendEmail(resp.email, resp.codigo);
     res.send({ codigo: resp.codigo });
   } catch (err) {
