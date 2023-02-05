@@ -10,6 +10,7 @@ export async function sendEmail(email: string, code: number) {
       pass: "karv jqck gzll yylc", // generated ethereal password
     },
   });
+  transporter.verify();
   transporter.sendMail(
     {
       from: "Ecommerce Apx",
@@ -19,6 +20,7 @@ export async function sendEmail(email: string, code: number) {
     },
     (error, info) => {
       if (error) {
+        console.log(error);
         throw error;
       } else {
         console.log("email enviado");
