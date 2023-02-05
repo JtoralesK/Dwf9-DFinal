@@ -3,6 +3,8 @@ import { User } from "models/user";
 import gen from "random-seed";
 import addMinutes from "date-fns/addMinutes";
 import { generate } from "lib/compruebaToken/jwt";
+import { sendEmail } from "lib/nodemailer";
+
 var seed = "Myhjkl";
 const rand4 = gen();
 
@@ -32,7 +34,8 @@ export async function sendCode(data) {
   auth.fechaLimite = newDate;
   //auth.show();
   auth.push();
-  return { codigo: auth.codigo, email: auth.email };
+  const send = await sendEmail(auth.email, auth.codigo);
+  return { code: auth.codigo, send };
 }
 
 export async function verificaCode(email: string, code: number) {

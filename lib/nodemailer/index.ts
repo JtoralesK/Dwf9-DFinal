@@ -12,7 +12,7 @@ export async function sendEmail(email: string, code: number) {
     },
   });
   transporter.verify();
-  transporter.sendMail(
+  return await transporter.sendMail(
     {
       from: "Ecommerce Apx",
       to: email,
