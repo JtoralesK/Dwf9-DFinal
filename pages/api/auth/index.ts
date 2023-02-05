@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { sendCode } from "controllers/authControllers";
-import { sendEmail } from "lib/sendgrid";
+import { sendEmail } from "lib/nodemailer";
 import methods from "micro-method-router";
 import { handlerCORS } from "externalFunctions/handlerCors";
 import * as yup from "yup";
