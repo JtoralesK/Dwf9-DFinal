@@ -12,20 +12,18 @@ export async function sendEmail(email: string, code: number) {
     },
   });
   transporter.verify();
-  return await transporter.sendMail(
-    {
-      from: "Ecommerce Apx",
-      to: email,
-      subject: "Codigo",
-      text: `${code}`,
-    },
-    (error, info) => {
-      if (error) {
-        console.log(error);
-        throw error;
-      } else {
-        console.log("email enviado");
-      }
-    }
-  );
+  const objEmail = {
+    from: "Ecommerce Apx",
+    to: email,
+    subject: "Codigo",
+    text: `${code}`,
+  };
+  const data = await transporter.sendMail(objEmail);
+  try {
+    console.log("email send");
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
