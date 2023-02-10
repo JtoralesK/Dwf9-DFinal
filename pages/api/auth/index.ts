@@ -13,6 +13,8 @@ let email = yup
 
 async function auth(req: NextApiRequest, res: NextApiResponse) {
   try {
+    console.error(req.body);
+
     await email.validate(req.body);
     const resp = await sendCode(req.body);
     res.send(resp);

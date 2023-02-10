@@ -81,8 +81,12 @@ export class Product {
     if (res) return { limit, offset: limit + offset };
   }
   static async syncProductsAlgolia(vIndex: any[]) {
-    console.log({ vIndex }, "para algolia");
-    index.saveObjects(vIndex).wait();
-    return true;
+    try {
+      index.saveObjects(vIndex).wait();
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   }
 }
