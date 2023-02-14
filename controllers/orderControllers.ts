@@ -11,8 +11,8 @@ const preference = (product, order) => {
     items: [
       {
         title: `${data.name}`,
-        description: `es un producto de prueba`,
-        picture_url: "http://www.myapp.com/myimage.jpg",
+        description: `${data.name}`,
+        picture_url: `${data.image}`,
         category_id: `${data.type}`,
         quantity: 1,
         currency_id: "ARS",
@@ -20,7 +20,7 @@ const preference = (product, order) => {
       },
     ],
     back_urls: {
-      sucess: "https://mypageEcommerce",
+      sucess: "https://dwf10-final.vercel.app/",
     },
     external_reference: `${order.orderId}`,
     notification_url: "https://dwf9-d-final.vercel.app/api/ipn/mercadopago",
