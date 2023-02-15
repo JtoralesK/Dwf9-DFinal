@@ -20,8 +20,9 @@ const preference = (product, order) => {
       },
     ],
     back_urls: {
-      sucess: "https://dwf10-final.vercel.app/",
+      sucess: "https://dwf10-final.vercel.app/payment",
     },
+    auto_return: "all",
     external_reference: `${order.orderId}`,
     notification_url: "https://dwf9-d-final.vercel.app/api/ipn/mercadopago",
   };
